@@ -1,5 +1,6 @@
 package com.common.bean;
 
+import com.alibaba.fastjson.JSONObject;
 import com.common.constant.ResponseCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class ExecuteResult {
     public ExecuteResult(Object data) {
         this(ResponseCode.OK.getCode(),ResponseCode.OK.getMessage());
         this.success = true;
-        this.data = data;
+        this.data = JSONObject.toJSON(data);
     }
 
     public ExecuteResult(boolean success,ResponseCode responseCode) {
