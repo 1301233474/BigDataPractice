@@ -20,6 +20,11 @@ public class StringValidation {
      * 正则表达式：邮编
      */
     public static final String REGEX_CODE = "[1-9]\\d{5}(?!\\d)";
+
+    /**
+     *
+     */
+    public static final String REGEX_BIRTHDAY = "(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29) ";
     /**
      * 只能输入数字：
      */
@@ -219,6 +224,15 @@ public class StringValidation {
      */
     public static boolean isEmail(String email) {
         return Pattern.matches(REGEX_EMAIL, email);
+    }
+
+    /**
+     * 验证生日
+     * @param birthday
+     * @return
+     */
+    public static boolean isBirthDay(String birthday) {
+        return Pattern.matches(REGEX_BIRTHDAY, birthday);
     }
 
     /**

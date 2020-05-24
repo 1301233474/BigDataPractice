@@ -42,4 +42,20 @@ public class ExecuteResult {
         this(code, message);
         this.success = success;
     }
+
+    public static ExecuteResult failure(String message) {
+        return new ExecuteResult(ResponseCode.FAILED.getCode(), message);
+    }
+
+    public static ExecuteResult failure() {
+        return new ExecuteResult(ResponseCode.FAILED.getCode(), ResponseCode.FAILED.getMessage());
+    }
+
+    public static ExecuteResult success() {
+        return new ExecuteResult(true,ResponseCode.OK);
+    }
+
+    public static ExecuteResult success(Object data) {
+        return new ExecuteResult(data);
+    }
 }

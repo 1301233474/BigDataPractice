@@ -6,6 +6,7 @@ import com.common.bean.exception.IDGenerateException;
 import com.common.constant.ResponseCode;
 import com.common.bean.ExecuteResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -21,11 +22,14 @@ public class ExceptionAdvice {
         return JSONObject.toJSON(new ExecuteResult(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage()));
     }
 
+
+    @ExceptionHandler
     public Object handleSqlException(SQLSyntaxErrorException e) {
         log.error("SQL异常出现！",e);
         return JSONObject.toJSON(new ExecuteResult(ResponseCode.SQL_EXCEPTION.getCode(), ResponseCode.SQL_EXCEPTION.getMessage()));
     }
 
+    @ExceptionHandler
     public Object handleIdGenerateException(IDGenerateException e) {
         log.error("Id生成器异常！", e);
         return JSONObject.toJSON(new ExecuteResult(ResponseCode.ID_GENERATE_EXCEPTION.getCode(), ResponseCode.ID_GENERATE_EXCEPTION.getMessage()));
